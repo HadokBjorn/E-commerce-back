@@ -13,3 +13,4 @@ try {
 }
 
 export const db = mongoClient.db('CatStore');
+export const PORT = process.env.PORT || 5000;
