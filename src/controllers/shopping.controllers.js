@@ -47,3 +47,19 @@ export async function deleteProduct(req, res) {
 		res.status(500).send('tá falhando aqui');
 	}
 }
+
+export async function buyProduct(req, res) {
+	const { userId } = res.locals.session;
+
+	try {
+		const boughtProduct = await db
+			.collection('shopping')
+			.updateMany({ userId, status: 'inCart' }, { $set: { status: 'bought' } });
+
+		if (boughtProduct.matchedCount === 0)
+			return res.status(404).send('Não há produtos na sua lista!');
+		res.send('Compra realizada com sucesso! Obrigado pela preferência!');
+	} catch (err) {
+		res.status(500).send(err.message);
+	}
+}
