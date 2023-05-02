@@ -1,7 +1,7 @@
 import { ObjectId } from 'mongodb';
 import { db } from '../database/database.connections.js';
 
-export async function productAdd(req, res) {
+export async function productCartAdd(req, res) {
 	const { name, value } = req.body;
 	const { userId } = res.locals.session;
 
@@ -20,7 +20,7 @@ export async function productAdd(req, res) {
 	}
 }
 
-export async function getProducts(req, res) {
+export async function getCartProducts(req, res) {
 	const { userId } = res.locals.session;
 
 	try {
