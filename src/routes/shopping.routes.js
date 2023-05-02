@@ -7,12 +7,13 @@ import {
 	getCartProducts,
 	deleteProduct,
 	buyProduct,
+	getStoreProducts,
 } from '../controllers/shopping.controllers.js';
 
 const shoppingRouter = Router();
 
+shoppingRouter.get('/products', getStoreProducts);
 shoppingRouter.use(authValidation);
-
 shoppingRouter.post('/shopping', validateSchema(productSchema), productCartAdd);
 shoppingRouter.get('/shopping', getCartProducts);
 shoppingRouter.delete('/shopping/:id', deleteProduct);

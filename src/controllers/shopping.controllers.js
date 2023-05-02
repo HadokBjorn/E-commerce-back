@@ -63,3 +63,12 @@ export async function buyProduct(req, res) {
 		res.status(500).send(err.message);
 	}
 }
+
+export async function getStoreProducts(req, res) {
+	try {
+		const products = await db.collection('products').find({}).toArray();
+		res.send(products);
+	} catch (err) {
+		res.status(500).send(err.message);
+	}
+}
